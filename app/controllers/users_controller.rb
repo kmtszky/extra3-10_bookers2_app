@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :user_find, only: [:show, :edit, :update]
 
   def show
+    @books = @user.books
   end
 
   def index

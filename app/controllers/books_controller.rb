@@ -2,6 +2,8 @@ class BooksController < ApplicationController
   before_action :book_find, only: [:show, :edit, :update, :destroy]
 
   def show
+    @book_new = Book.new
+    @user = current_user
   end
 
   def index
