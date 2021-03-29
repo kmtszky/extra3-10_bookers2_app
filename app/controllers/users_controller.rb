@@ -2,10 +2,13 @@ class UsersController < ApplicationController
   before_action :user_find, only: [:show, :edit, :update]
 
   def show
+    @book = Book.new
     @books = @user.books
   end
 
   def index
+    @book = Book.new
+    @user = current_user
     @users = User.all
   end
 

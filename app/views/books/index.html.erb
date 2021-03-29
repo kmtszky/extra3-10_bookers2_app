@@ -6,8 +6,8 @@
 
     <!--main-->
     <div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
       <table class="table">
-        <h2>Books</h2>
         <thead>
           <tr>
             <th></th>
@@ -17,11 +17,13 @@
         </thead>
         <tbody>
           <% @books.each do |book| %>
-            <td><%= link_to user_path(book.user_id) do %>
-                  <%= attachment_image_tag book.user, :profile_image, :fill, 30, 30, fallback: "no_image.jpg" %><% end %>
-            </td>
-            <td><%= link_to book.title, book_path(book.id) %></td>
-            <td><%= book.body %></td>
+            <tr>
+              <td><%= link_to user_path(book.user_id) do %>
+                    <%= attachment_image_tag book.user, :profile_image, :fill, 30, 30, fallback: "no_image.jpg" %><% end %>
+              </td>
+              <td><%= link_to book.title, book_path(book.id) %></td>
+              <td><%= book.body %></td>
+            </tr>
           <% end %>
         </tbody>
       </table>
