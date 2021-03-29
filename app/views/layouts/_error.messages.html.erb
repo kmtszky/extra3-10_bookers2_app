@@ -1,0 +1,14 @@
+<% if validation.errors.any? %>
+  <div id="error_explanation">
+    <% if validation.errors.count == 1 %>
+      <h3><%= validation.errors.count %> error prohibited this obj from being saved:</h3>
+    <% else %>
+      <h3><%= validation.errors.count %> errors prohibited this obj from being saved:</h3>
+    <% end %>
+    <ul>
+      <% validation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
