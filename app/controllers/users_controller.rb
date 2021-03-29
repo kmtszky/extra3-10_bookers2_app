@@ -13,13 +13,18 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user.save
-    redirect_to user_path(@user.id)
+    if @user.id != current_user.id
+      @books = @user.books
+      render :show
+    end
   end
 
   def update
-    @user.update(user_params)
-    redirect_to user_path(@user.id)
+    if @user.update(user_params)
+      redirect_to user_path(@user.id)
+    else
+      render :edit
+    end
   end
 
   private
