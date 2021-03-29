@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 <div class="container px-5 px-sm-0">
-  <%= render "layouts/error.messages", error: @book %>
+  <%= render 'layouts/error.messages', validation: @book %>
   <div class="row">
     <!--side bar-->
-    <%= render "layouts/sidebar", user: @user, book: @book_new %>
+    <%= render 'layouts/sidebar', user: @user, book: @book_new %>
     <!--main-->
     <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>

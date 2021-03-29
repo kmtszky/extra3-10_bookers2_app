@@ -1,12 +1,12 @@
-<% if error.errors.any? %>
+<% if validation.errors.any? %>
   <div id="error_explanation">
-    <% if error.errors.count == 1 %>
-      <h3><%= error.errors.count %> error prohibited this obj from being saved:</h3>
+    <% if validation.errors.count == 1 %>
+      <h3><%= validation.errors.count %> error prohibited this obj from being saved:</h3>
     <% else %>
-      <h3><%= error.errors.count %> errors prohibited this obj from being saved:</h3>
+      <h3><%= validation.errors.count %> errors prohibited this obj from being saved:</h3>
     <% end %>
     <ul>
-      <% error.errors.full_messages.each do |message| %>
+      <% validation.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>

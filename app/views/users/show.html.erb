@@ -1,10 +1,10 @@
 <p id="notice"><%= notice %></p>
 <div class="container px-5 px-sm-0">
-  <%= render "layouts/error.messages", error: @book %>
+  <%= render "layouts/error.messages", validation: @book %>
 
   <div class="row">
     <!--side bar-->
-    <%= render "layouts/sidebar", user: @user, book: @book %>
+    <%= render 'layouts/sidebar', user: @user, book: @book %>
 
     <!--main-->
     <div class="col-md-8 offset-md-1">
