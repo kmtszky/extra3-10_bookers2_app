@@ -25,9 +25,18 @@ class BooksController < ApplicationController
   end
 
   def edit
+    if @book.user_id != current_user.id
+      render :show
+    end
   end
 
   def update
+    @book.user_id = current_user.id
+    if @book.update(book_params)
+      redirect_to book_path(@book.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
