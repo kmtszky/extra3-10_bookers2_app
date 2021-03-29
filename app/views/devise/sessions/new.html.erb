@@ -1,3 +1,4 @@
+<!--log_in-->
 <p id="notice"><%= notice %></p>
 
 <div class="container">
@@ -8,7 +9,7 @@
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
           <%= f.label :name %><br />
-          <%= f.email_field :name, autofocus: true, autocomplete: "email" %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
         </div>
 
         <div class="field">
