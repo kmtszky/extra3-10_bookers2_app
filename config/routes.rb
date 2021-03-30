@@ -10,5 +10,8 @@ Rails.application.routes.draw do
   # books
   resources :books, only: [:show, :index, :create, :edit, :update, :destroy]
 
+  # comments
+  resources :comments, only: [:create, :destroy]
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
