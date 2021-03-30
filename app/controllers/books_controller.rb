@@ -1,9 +1,11 @@
 class BooksController < ApplicationController
-  before_action :book_find, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def show
+    @book = Book.find(params[:id])
     @book_new = Book.new
-    @user = current_user
+    @user = @book.user
+    @comment = Comment.new
   end
 
   def index
@@ -25,13 +27,9 @@ class BooksController < ApplicationController
   end
 
   def edit
-    if @book.user_id != current_user.id
-      render :show
-    end
   end
 
   def update
-    @book.user_id = current_user.id
     if @book.update(book_params)
       redirect_to book_path(@book.id), notice: 'You have updated book successfully.'
     else
@@ -46,8 +44,11 @@ class BooksController < ApplicationController
 
   private
 
-  def book_find
+  def correct_user
     @book = Book.find(params[:id])
+    if current_user.id != @book.user_id
+      redirect_to books_path
+    end
   end
 
   def book_params
