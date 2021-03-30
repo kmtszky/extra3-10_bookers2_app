@@ -24,6 +24,32 @@
           <% end %>
         </tbody>
       </table>
+      <h3>Comments</h3>
+      <div class="comments">
+        <table class="table">
+          <tbody>
+            <% @book.comments.each do |comment| %>
+            <tr>
+              <td rowspan="2"><%= attachment_image_tag comment.user, :profile_image, :fill, 30, 30, fallback: "no_image.jpb" %></td>
+              <td><%= comment.user.name %>  <%= comment.created_at.strftime('%Y/%m/%d') %></td>
+            </tr>
+            <tr>
+              <td><%= comment.comment %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="new comments">
+        <%= form_with(model: [@book, @comment], local: true) do |f| %>
+          <div class="form-group">
+            <%= f.text_area :comment, rows: '3', placeholder: "commentS here!", class: "form-control" %>
+          </div>
+          <div class="actions">
+            <%= f.submit 'Post comments', class: "btn btn-warning btn-sm text-light" %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
