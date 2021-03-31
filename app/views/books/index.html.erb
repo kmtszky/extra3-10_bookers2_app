@@ -26,7 +26,7 @@
               <td class="cell-md"><%= link_to book.title, book_path(book.id) %></td>
               <td class="cell-lg"><%= book.body %></td>
               <td class="cell-sm"><i class="far fa-comment"></i> <%= book.comments.count %></td>
-              <td class="cell-sm"><i class="far fa-heart favorite text-danger"></i></td>
+              <td class="cell-sm"><i class="fas fa-heart favorite text-danger"></i> <%= book.favorites.count %></td>
             </tr>
           <% end %>
         </tbody>
