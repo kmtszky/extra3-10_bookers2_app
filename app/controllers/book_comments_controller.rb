@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class BookCommentsController < ApplicationController
   def create
     book = Book.find(params[:book_id])
     comment = current_user.comments.new(comment_params)
@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    Comment.find_by(id: params[:id], book_id: params[:book_id]).destroy
+    BookComment.find_by(id: params[:id], book_id: params[:book_id]).destroy
     redirect_to book_path(params[:book_id])
   end
 
