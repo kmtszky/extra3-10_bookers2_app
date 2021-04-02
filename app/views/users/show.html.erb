@@ -4,8 +4,10 @@
 
   <div class="row">
     <!--side bar-->
-    <%= render 'layouts/sidebar', user: @user, book: @book %>
-
+    <div class="col-md-3">
+      <%= render 'layouts/userinfo', user: @user %>
+      <%= render 'layouts/newbook', book: @book %>
+    </div>
     <!--main-->
     <div class="col-md-8 offset-md-1">
       <%= render 'books/books', books: @books %>
