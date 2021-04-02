@@ -3,7 +3,10 @@
   <%= render 'layouts/error.messages', validation: @book %>
   <div class="row">
     <!--side bar-->
-    <%= render 'layouts/sidebar', user: @user, book: @book_new %>
+    <div class="col-md-3">
+      <%= render 'layouts/userinfo', user: @user %>
+      <%= render 'layouts/newbook', book: @book_new %>
+    </div>
     <!--main-->
     <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
