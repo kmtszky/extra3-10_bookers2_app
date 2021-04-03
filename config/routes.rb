@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   # relationships
   resources :relationships, only: [:create, :destroy]
+  # post '/.../:id:', to: 'controller#action'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
