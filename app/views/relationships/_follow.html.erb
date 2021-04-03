@@ -1,13 +1,7 @@
 <% unless current_user == user %>
   <% if current_user.following?(user) %>
-    <%= link_to form_with(model: current_user.relationships.find_by(follow_id: user.id), method: :delete do |f| %>
-      <%= hidden_field_tag :follow_id, user.id %>
-      <%= f.submit 'フォロー外す', class: 'btn btn-info btn-sm' %>
-    <% end %>
+    <%= link_to "フォロー外す", relationship_path(user), method: :delete, class: "btn btn-info btn-sm" do |f| %>
   <% else %>
-    <%= form_with model: current_user.relationships.build) do |f| %>
-      <%= hidden_field_tag :follow_id, user.id %>
-      <%= f.submit 'フォローする', class: 'btn btn-success btn-sm' %>
-    <% end %>
+    <%= link_to "フォローする", relationships_path(user), class: "btn btn-success btn-sm" do |f| %>
   <% end %>
 <% end %>

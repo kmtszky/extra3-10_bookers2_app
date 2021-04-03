@@ -11,12 +11,12 @@
       <th><%= user.introduction %></th>
     </tr>
     <tr>
-      <th>follower</th>
-      <th></th>
+      <th>follows</th>
+      <th><%= user.following_users.count %></th>
     </tr>
     <tr>
       <th>follower</th>
-      <th></th>
+      <th><%= user.followed_users.count %></th>
     </tr>
   </tbody>
 </table>
