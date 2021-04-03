@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <h2>Follow Users</h2>
+  </div>
+  <% if @user.following_users.count == 0 %>
+    <div class="row">
+      <p>ユーザーはいません</p>
+    </div>
+  <% else %>
+    <%= render 'index', users: @followers %>
+  <% end %>
+</div>

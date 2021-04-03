@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   # users
   devise_for :users
   resources :users, only: [:show, :index, :edit, :update]
+  get '/users/:id/follower', to: 'users#follower', as: 'user_follower'
+  get '/users/:id/followed', to: 'users#followed', as: 'user_followed'
 
   # books, comments
   resources :books, only: [:show, :index, :create, :edit, :update, :destroy] do
