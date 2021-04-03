@@ -13,21 +13,24 @@ class User < ApplicationRecord
   #フォローしている人を取得
     # @user.followerとした際に、@user.idをfollowed_idと指定（follower_idにuser_idを格納）
     has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-    has_many :following_user, through: :follower, source: :followed
+    has_many :following_users, through: :follower, source: :followed
   # フォロワー取得
     # @user.followedとした際に、@user.idをfollowed_idと指定（followed_idにuser_idを格納）
     has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-    has_many :follower_user, through: :followed, source: :follower
+    has_many :followed_users, through: :followed, source: :follower
 
-    def follow(user_id)
-      follower.create(followed_id: user_id)
+    def follow(other_user)
+      unless self == other_user
+        self.relationships.find_or_create_by(follower_id: other_user.id)
+      end
     end
 
-    def unfollow(user_id)
-      follower.find_by(followed_id: user_id).destroy
+    def unfollow(other_user)
+      relationship = self.relationships.find_by(follower_id: other_user.id)
+      relationship.destroy if relationship
     end
 
-    def following?(user)
-      following_user.include?(user)
+    def following?(other_user)
+      myself.following_users.include?(other_user)
     end
 end
