@@ -2,7 +2,7 @@ class RelationshipsController < ApplicationController
   before_action :set_user, only: [:create, :destroy]
 
   def create
-    following = current_user.relationship.follow(@user)
+    following = current_user.follow(@user)
     if following.save
       flash[:notice] = 'successfully followed !'
       redirect_back(fallback_location: books_path)
@@ -26,6 +26,6 @@ class RelationshipsController < ApplicationController
   private
 
   def set_user
-    @user = User.find(params[:followed_id])
+    @user = User.find(params[:id])
   end
 end

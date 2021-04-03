@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   end
 
   # relationships
-  resources :relationships, only: [:create, :destroy]
+  resources :relationships, only: [:destroy]
+  post '/relationships/:id', to: 'relationships#create'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
