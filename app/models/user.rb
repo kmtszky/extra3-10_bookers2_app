@@ -10,22 +10,22 @@ class User < ApplicationRecord
   validates :name, uniqueness: true, length: { in: 2..20 }
   validates :introduction, length: { maximum: 50 }
 
-  # 有名人side （フォローされる人=> フォロワー（follower）たくさんいる= has_many: followers）
-  has_many :relationships, foreign_key: "followed_id", dependent: :destroy
-  has_many :followers, through: :relationships, source: :follower
-  # ファンside（有名人: followed_users のファン）
-  has_many :positive_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :followed_users, through: :positive_relationships, source: :followed
+  # 例）ファンside （有名人をフォローする人）
+  has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :following_users, through: :follower, source: :followed
+  # 例）有名人side （ファンにフォローされている人）
+  has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :followed_users, through: :followed, source: :follower
 
-  # self=ファン, other_user=有名人（フォローされる人；followed_id）
+  # 例）self: ファン, other_user: 有名人
   def follow(other_user)
     unless self == other_user
-      self.relationships.find_or_create_by(followed_id: other_user.id)
+      self.follower.find_or_create_by(followed_id: other_user.id)
     end
   end
 
   def unfollow(other_user)
-    relationship = self.relationships.find_by(followed_id: other_user.id)
+    relationship = self.follower.find_by(followed_id: other_user.id)
     relationship.destroy if relationship
   end
 
