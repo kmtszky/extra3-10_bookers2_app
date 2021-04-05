@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # homes
   root to: 'homes#top'
-  get 'home/about' => 'homes#about'
+  get 'home/about', to: 'homes#about'
 
   # users
   devise_for :users
@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   # relationships
   resources :relationships, only: [:destroy]
   post '/relationships/:id', to: 'relationships#create'
+  
+  # search
+  get 'search', to: 'searchs#search'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
