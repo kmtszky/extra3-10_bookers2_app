@@ -41,7 +41,7 @@ class User < ApplicationRecord
     elsif search == backward_match
       @user = User.where("name like?", "#{search_key}%")
     elsif search == partial_match
-      @user = User.where("name like?", "%#{sesarch_key}%")
+      @user = User.where("name like?", "%#{search_key}%")
     else
       @user = User.all
     end
