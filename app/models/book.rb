@@ -20,7 +20,7 @@ class Book < ApplicationRecord
     elsif search == "partial_match"
       @book = Book.where("title like?", "%#{search_key}%").or(Book.where("body like?", "%#{search_key}%"))
     else
-      @book = Book.all
+      @book = Book.none
     end
   end
 end
