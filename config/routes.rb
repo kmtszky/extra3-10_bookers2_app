@@ -18,9 +18,9 @@ Rails.application.routes.draw do
   # relationships
   resources :relationships, only: [:destroy]
   post '/relationships/:id', to: 'relationships#create'
-  
+
   # search
-  get 'search', to: 'searchs#search'
+  resources :searchs, only: [:index]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

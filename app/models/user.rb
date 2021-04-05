@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   validates :name, uniqueness: true, length: { in: 2..20 }
   validates :introduction, length: { maximum: 50 }
-  
+
   # 例）ファンside （有名人をフォローする人）
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :following_users, through: :follower, source: :followed
@@ -32,8 +32,5 @@ class User < ApplicationRecord
   def following?(other_user)
     self.following_users.include?(other_user)
   end
-  
-  def search_user(user)
-    
-  end
+
 end
