@@ -1,5 +1,4 @@
-<h2>Books</h2>
-<table class="table table-hover">
+<table class="table">
   <thead>
     <tr>
       <th></th>
@@ -23,7 +22,6 @@
             <%= link_to book_favorites_path(book), method: :post, class: "fas fa-heart" do %>
               <%= book.favorites.count %><% end %>
           <% end %></td>
-        <td>コメント数: <%= book.book_comments.count %></td>
       </tr>
     <% end %>
   </tbody>

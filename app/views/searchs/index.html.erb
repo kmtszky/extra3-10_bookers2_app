@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <% if @category == "user" %>
+      <h2>Users search for "<%= @search_key %>"</h2>
+      <%= render 'users/users', users: @users %>
+    <% else %>
+      <h2>Books search for "<%= @search_key %>"</h2>
+      <%= render 'books/books', books: @books %>
+    <% end %>
+  </div>
+</div>
