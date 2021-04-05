@@ -11,13 +11,13 @@ class Book < ApplicationRecord
   end
 
   def self.search(search, search_key)
-    if search == perfect_match
+    if search == "perfect_match"
       @book = Book.where(title: "#{search_key}").or(Book.where(body: "#{search_key}"))
-    elsif search == forward_matsh
+    elsif search == "forward_match"
       @book = Book.where("title like?", "%#{search_key}").or(Book.where("body like?", "%#{search_key}"))
-    elsif search == backward_match
+    elsif search == "backward_match"
       @book = Book.where("title like?", "#{search_key}%").or(Book.where("body like?", "#{search_key}%"))
-    elsif search == partial_match
+    elsif search == "partial_match"
       @book = Book.where("title like?", "%#{search_key}%").or(Book.where("body like?", "%#{search_key}%"))
     else
       @book = Book.all
