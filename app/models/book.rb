@@ -14,9 +14,9 @@ class Book < ApplicationRecord
     if search == "perfect_match"
       @book = Book.where(title: "#{search_key}").or(Book.where(body: "#{search_key}"))
     elsif search == "forward_match"
-      @book = Book.where("title like?", "%#{search_key}").or(Book.where("body like?", "%#{search_key}"))
-    elsif search == "backward_match"
       @book = Book.where("title like?", "#{search_key}%").or(Book.where("body like?", "#{search_key}%"))
+    elsif search == "backward_match"
+      @book = Book.where("title like?", "%#{search_key}").or(Book.where("body like?", "%#{search_key}"))
     elsif search == "partial_match"
       @book = Book.where("title like?", "%#{search_key}%").or(Book.where("body like?", "%#{search_key}%"))
     else

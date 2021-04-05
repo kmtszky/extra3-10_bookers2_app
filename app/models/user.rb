@@ -37,13 +37,13 @@ class User < ApplicationRecord
     if search == "perfect_match"
       @user = User.where(name: "#{search_key}")
     elsif search == "forward_match"
-      @user = User.where("name like?", "%#{search_key}")
-    elsif search == "backward_match"
       @user = User.where("name like?", "#{search_key}%")
+    elsif search == "backward_match"
+      @user = User.where("name like?", "%#{search_key}")
     elsif search == "partial_match"
       @user = User.where("name like?", "%#{search_key}%")
     else
-      @user = User.all
+      @user = User.none
     end
   end
 end

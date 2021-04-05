@@ -11,8 +11,8 @@ class SearchsController < ApplicationController
         @book = Book.search(search, @search_key)
       end
     else
-      flash[:ellors_explanation] = "please input some words"
-      redirect_back(fallback_location: user_path(current_user))
+      @users = User.none
+      @books = Book.none
     end
   end
 end
