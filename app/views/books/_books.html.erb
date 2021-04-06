@@ -22,6 +22,7 @@
             <%= link_to book_favorites_path(book), method: :post, class: "fas fa-heart" do %>
               <%= book.favorites.count %><% end %>
           <% end %></td>
+        <td>コメント数：<%= book.book_comments.count %></td>
       </tr>
     <% end %>
   </tbody>
