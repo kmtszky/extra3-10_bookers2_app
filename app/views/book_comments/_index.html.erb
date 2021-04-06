@@ -1,4 +1,4 @@
-<table class="table table-borderless">
+<table class="table table-borderless", id="comment_index">
   <tbody>
     <% book.book_comments.each do |comment| %>
     <tr>
@@ -14,4 +14,3 @@
     <% end %>
   </tbody>
 </table>
-<%= render 'book_comments/form', book: book, book_comment: book_comment %>
