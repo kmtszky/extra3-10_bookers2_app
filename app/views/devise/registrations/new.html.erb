@@ -25,8 +25,8 @@
 
         <div class="field">
           <%= f.label :prefecture_code, 'Prefecture Code' %><br />
-          <%= f.collection_select :prefecture_code, collection: JpPrefecture::Prefecture.all, :value_method => :name %>
-        </div>
+          <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name %>
+          </div>
 
         <div class="field">
           <%= f.label :address_city, 'City' %><br />
