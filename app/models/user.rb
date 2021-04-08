@@ -20,10 +20,10 @@ class User < ApplicationRecord
 
   validates :name, uniqueness: true, length: { in: 2..20 }
   validates :introduction, length: { maximum: 50 }
-  validates :postal_code, presence: true
+  validates :postcode, presence: true
   validates :prefecture_code, presence: true
-  validates :city, presence: true
-  validates :street, presence: true
+  validates :address_city, presence: true
+  validates :address_street, presence: true
 
   # 例）self: ファン, other_user: 有名人
   def follow(other_user)
