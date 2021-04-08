@@ -3,9 +3,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  devise_for :users, :controllers => {
-   :registrations => 'users/registrations',
-  }
 
   attachment :profile_image
   has_many :books, dependent: :destroy

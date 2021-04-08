@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   get 'home/about', to: 'homes#about'
 
   # users
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+  }
   resources :users, only: [:show, :index, :edit, :update]
   get '/users/:id/follower', to: 'users#follower', as: 'user_follower'
   get '/users/:id/followed', to: 'users#followed', as: 'user_followed'
