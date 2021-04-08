@@ -1,22 +1,29 @@
 class User < ApplicationRecord
+  include JpPrefecture
+  jp_prefecture :prefecture_code
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  attachment :profile_image
   has_many :books, dependent: :destroy
   has_many :book_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  validates :name, uniqueness: true, length: { in: 2..20 }
-  validates :introduction, length: { maximum: 50 }
-
   # 例）ファンside （有名人をフォローする人）
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :following_users, through: :follower, source: :followed
   # 例）有名人side （ファンにフォローされている人）
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followed_users, through: :followed, source: :follower
+
+  attachment :profile_image
+
+  validates :name, uniqueness: true, length: { in: 2..20 }
+  validates :introduction, length: { maximum: 50 }
+  validates :postal_code, presence: true
+  validates :prefecture_code, presence: true
+  validates :city, presence: true
+  validates :street, presence: true
 
   # 例）self: ファン, other_user: 有名人
   def follow(other_user)
@@ -47,9 +54,6 @@ class User < ApplicationRecord
       @user = User.none
     end
   end
-
-  include JpPrefecture
-  jp_prefecture :prefecture_code
 
   def prefecture_name
     JpPrefecture::Prefecture.find(code: prefecture_code).try(:name)
