@@ -8,7 +8,10 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: 'users/sessions',
   }
-  resources :users, only: [:show, :index, :edit, :update]
+  resources :users, only: [:show, :index, :edit, :update] do
+    resources :chat, only: [:show, :create]
+    resources :rooms, only: [:create]
+  end
   get '/users/:id/follower', to: 'users#follower', as: 'user_follower'
   get '/users/:id/followed', to: 'users#followed', as: 'user_followed'
 
@@ -24,10 +27,6 @@ Rails.application.routes.draw do
 
   # search
   resources :searchs, only: [:index]
-
-  # chat
-  resources :chat, only: [:show]
-  resources :messages, only: [:create]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
