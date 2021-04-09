@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
   }
   resources :users, only: [:show, :index, :edit, :update] do
-    resources :chat, only: [:show, :create]
+    resources :chats, only: [:show, :create]
     resources :rooms, only: [:create]
   end
   get '/users/:id/follower', to: 'users#follower', as: 'user_follower'
