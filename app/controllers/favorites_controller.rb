@@ -1,5 +1,5 @@
 class FavoritesController < ApplicationController
-  before_action :set_user
+  before_action :set_book
 
   def create
     favorite = current_user.favorites.new(book_id: @book.id)
@@ -13,7 +13,7 @@ class FavoritesController < ApplicationController
 
   private
 
-  def set_user
+  def set_book
     @book = Book.find(params[:book_id])
   end
 end

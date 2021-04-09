@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <h2><%= @user.name %> さんとのチャット</h2>
+  </div>
+  <!--new message-->
+  <div class="row">
+    <div class="col-md-12 field">
+      <%= form_with(model: [@user, @chat]) do |f| %>
+        <%= f.text_field :message %>
+        <%= f.hidden_field :room_id %>
+      <% end %>
+    </div>
+  </div>
+  <!--chat-->
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <table class="message table table-borderless">
+        <tbody>
+          <% @chats.each do |chat| %>
+            <% if chat.user_id == current_user.id %>
+              <tr>
+                <td></td>
+                <td><p style="text-align: right"><%= chat.message %></p></td>
+                <td><%= attachment_image_tag chat.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpb", size: "40x40" %></td>
+              </tr>
+            <% else %>
+              <tr>
+                <td style="text-align: right"><%= attachment_image_tag chat.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpb", size: "40x40" %></td>
+                <td><p style="text-align: left"><%= chat.message %></p></td>
+                <td></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -6,6 +6,10 @@
     <!--side bar-->
     <div class="col-md-3">
       <%= render 'info', user: @user %>
+      <% unless @user.id == current_user.id %>
+        <%= link_to "chatをはじめる", user_chat_path(@user) %>
+      <% end %>
+      <%= render 'btn', user: @user %>
       <%= render 'books/newbook', book: @book %>
     </div>
     <!--main-->

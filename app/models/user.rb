@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followed_users, through: :followed, source: :follower
 
-  has_many :rooms, through: :user_rooms #DMしているユーザーの一覧を作るために必要。user_roomsを介してroomsの情報を集める
+  has_many :rooms, through: :user_rooms #user_roomsを介してroomsの情報を集める
   has_many :chats
   has_many :user_rooms
 
