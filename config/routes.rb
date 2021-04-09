@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'chat/show'
   # homes
   root to: 'homes#top'
   get 'home/about', to: 'homes#about'
@@ -25,6 +24,10 @@ Rails.application.routes.draw do
 
   # search
   resources :searchs, only: [:index]
+
+  # chat
+  resources :chat, only: [:show]
+  resources :messages, only: [:create]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
