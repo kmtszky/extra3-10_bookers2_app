@@ -1,0 +1,12 @@
+<% unless @user.id == current_user.id %>
+  <% if @have_room == true %>
+    <%= link_to "chatをはじめる", user_chat_path(@user) %>
+  <% else %>
+    <%= form_with(model: [@room, @user], local: true) do |f| %>
+      <% fields_for @user_room do |e| %>
+        <% e.hidden_field :user_id, value: @user.id %>
+      <% end %>
+      <%= f.submit "chatをはじめる" %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -8,6 +8,7 @@ class ChatController < ApplicationController
         @u_rooms.each do |u_room|                    #user_bが参加しているルームをひとつずつu_roomへ格納
           if cu_room.room_id == u_room.room_id
             @room_id = cu_room.room_id
+            @have_room = true
           else
             @room = Room.new
             @user_room = UserRoom.new
