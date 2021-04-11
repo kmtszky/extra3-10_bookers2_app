@@ -61,8 +61,10 @@ Rails.application.configure do
 
   if Rails.env.production?
     # 本番環境
+    config.action_mailer.perform_deliveries = true
     config.action_mailer.raise_delivery_errors = true
     config.action_mailer.delivery_method = :smtp
+    config.action_mailer.default_url_options = { host: 'localhost:3000' }
     config.action_mailer.smtp_settings = {
       :enable_starttls_auto => true,
       :address => "smtp.gmail.com",
