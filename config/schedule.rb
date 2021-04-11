@@ -18,3 +18,14 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+env :PATH, ENV['PATH']
+set :environment, :development
+set :output, 'log/cron.log'
+every 1.minutes do
+  begincrontab -l
+    runner "DailyMailer.daily_send_mail"
+  rescue => e
+    Rails.logger.error("aborted rails runner")
+    raise e
+  end
+end

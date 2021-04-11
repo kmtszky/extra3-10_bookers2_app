@@ -1,5 +1,5 @@
 class DailyMailer < ApplicationMailer
-  def daily_send_mail(user)
+  def daily_send_mail
     @user = user
     mail(to: @user.email, subject: '【Bookers2】daily mail !')
   end
