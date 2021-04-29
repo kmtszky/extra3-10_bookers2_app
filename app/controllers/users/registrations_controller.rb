@@ -10,10 +10,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-   def create
-     super
-     ThanxMailer.with(user: @user).thanx_mail.deliver
-   end
+  def create
+    super
+    ThanxMailer.with(user: @user).thanx_mail.deliver
+  end
 
   # GET /resource/edit
   # def edit
