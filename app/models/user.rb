@@ -32,17 +32,17 @@ class User < ApplicationRecord
   # 例）self: ファン, other_user: 有名人
   def follow(other_user)
     unless self == other_user
-      follower.find_or_create_by(followed_id: other_user.id)
+      self.follower.find_or_create_by(followed_id: other_user.id)
     end
   end
 
   def unfollow(other_user)
-    relationship = follower.find_by(followed_id: other_user.id)
+    relationship = self.follower.find_by(followed_id: other_user.id)
     relationship.destroy if relationship
   end
 
   def following?(other_user)
-    following_users.include?(other_user)
+    self.following_users.include?(other_user)
   end
 
   def self.search(search, search_key)
