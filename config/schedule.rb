@@ -22,10 +22,8 @@ env :PATH, ENV['PATH']
 set :environment, :development
 set :output, 'log/cron.log'
 every 1.days, at: '9:00 am' do
-  begin
-    runner "DailyMailer.daily_send_mail"
-  rescue => e
-    Rails.logger.error("aborted rails runner")
-    raise e
-  end
+  runner "DailyMailer.daily_send_mail"
+rescue => e
+  Rails.logger.error("aborted rails runner")
+  raise e
 end

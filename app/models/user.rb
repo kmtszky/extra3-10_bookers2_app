@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followed_users, through: :followed, source: :follower
 
-  has_many :rooms, through: :user_rooms #user_roomsを介してroomsの情報を集める
+  has_many :rooms, through: :user_rooms # user_roomsを介してroomsの情報を集める
   has_many :chats
   has_many :user_rooms
 
@@ -32,17 +32,17 @@ class User < ApplicationRecord
   # 例）self: ファン, other_user: 有名人
   def follow(other_user)
     unless self == other_user
-      self.follower.find_or_create_by(followed_id: other_user.id)
+      follower.find_or_create_by(followed_id: other_user.id)
     end
   end
 
   def unfollow(other_user)
-    relationship = self.follower.find_by(followed_id: other_user.id)
+    relationship = follower.find_by(followed_id: other_user.id)
     relationship.destroy if relationship
   end
 
   def following?(other_user)
-    self.following_users.include?(other_user)
+    following_users.include?(other_user)
   end
 
   def self.search(search, search_key)
